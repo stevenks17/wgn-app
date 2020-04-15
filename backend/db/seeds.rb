@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Game.destroy_all
+Review.destroy_all
+
+puts "Entering the data into the MATRIX!!!"
+
+g1 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
+g2 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
+g3 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
+g4 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
+
+r1= Review.create(body: "Worth the wait!--Darkelfone", gamer: "Dark", game_id: 1)
