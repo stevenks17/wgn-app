@@ -43,24 +43,30 @@ class Game {
             gameInfo.className = "game-info"
             gameBlock.appendChild(gameInfo)
                     
-                    const title = document.createElement('h3')
-                    title.setAttribute("class", 'book-title')
-                    title.innerHTML = this.title
-                    gameInfo.appendChild(title)
+                const title = document.createElement('h3')
+                title.setAttribute("class", 'book-title')
+                title.innerHTML = this.title
+                gameInfo.appendChild(title)
 
-                    const developer = document.createElement('h3')
-                    developer.setAttribute("class", 'book-developer')
-                    developer.innerHTML = this.developer
-                    gameInfo.appendChild(developer)
+                const developer = document.createElement('h3')
+                developer.setAttribute("class", 'book-developer')
+                developer.innerHTML = this.developer
+                gameInfo.appendChild(developer)
 
             const reviewInfo = document.createElement('div')
             reviewInfo.className = "review-info"
             gameBlock.appendChild(reviewInfo)     
 
-                    
-
-
-
+                const reviewHeader = document.createElement('h4')
+                reviewHeader.setAttribute("class," 'review-header')
+                reviewHeader.innerHTML = 'Posse Comments'
+                reviewInfo.append(reviewHeader)
+                
+                const reviews = document.createElement('div')
+                reviews.setAttribute("id", 'review-${this.id}')
+                reviewInfo.appendChild(reviews)
+                reviews.innerHTML = this.reviews.map(review = > this.reviewBody(review)).join('')
+    
 
     }
 }
