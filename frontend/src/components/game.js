@@ -58,15 +58,76 @@ class Game {
             gameBlock.appendChild(reviewInfo)     
 
                 const reviewHeader = document.createElement('h4')
-                reviewHeader.setAttribute("class," 'review-header')
-                reviewHeader.innerHTML = 'Posse Comments'
+                reviewHeader.setAttribute("class", 'review-header')
+                reviewHeader.innerHTML = 'Posse Comments:'
                 reviewInfo.append(reviewHeader)
                 
                 const reviews = document.createElement('div')
                 reviews.setAttribute("id", 'review-${this.id}')
                 reviewInfo.appendChild(reviews)
-                reviews.innerHTML = this.reviews.map(review = > this.reviewBody(review)).join('')
-    
+                reviews.innerHTML = this.reviews.map(review => this.reviewBody(review)).join('')
 
     }
+
+    reviewBody(review) {
+        return '<p>${review.body}</p>'
+    }
+
+
+    deleteGame(id){
+        return fetch('https://localhost:3000/games' + '/' + id, {
+            method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            }       
+        })
+    }
+
+    getAndFormatNewReviewForm(event) {
+        event.preventDefault();
+        const newReviewForm = document.getElementById('new-review-form')
+        const submitButton = document.getElementById("button")
+        submitButton.innerHTML = "Add"
+        submitButton.id = "review-submit"
+        submitButton.type = "submit"
+        const buttonDiv = document.getElementById("buttons")
+        buttonDiv.appendChild(submitButton)
+        submitButton.addEventListener('click', this.sumitReviewInputs.bind(this))
+    }
+
+    submitReviewInputs(event) {
+        event.preventDefault();
+        const buttonDiv = document.getElementById("buttons")
+        const submitButton = document.getElementById("review-submit")
+        const form = document.getElementById('new-review-form')
+        const newReviewBody = document.getElementById('new-review-body')
+        const reviewBox = document.getElementById('review-${this.id}')
+        const pDiv= document.createElement('p')
+        reviewBox.appendChild(pDiv)
+
+        const reviewAddition = {
+            game_id: this.id ,
+            body: newReviewBody.value,
+        };
+        fetch('http://locahost:3000/reviews', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body:JSON.stringify(reviewAddition)
+        })
+        .then(res => res.json())
+            .then(review => {
+                pDiv.innerHTML = review.body
+                newReviewBody.value = ''
+                buttonDiv.removeChild(submitButton)
+                closeForm()
+            })
+        }
+        
 }
+
+
+    
