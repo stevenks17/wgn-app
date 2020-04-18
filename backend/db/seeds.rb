@@ -14,5 +14,9 @@ g1 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cove
 g2 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
 g3 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
 g4 = Game.create(title: "Final Fantasy 7 Remake", developer: "Square Enix", cover: "https://upload.wikimedia.org/wikipedia/en/c/ce/FFVIIRemake.png")
+g5 = Game.create(title: "Evil Box Shooter", developer: "Enoch G.", cover: "Placeholder")
+
+
+
 
 r1= Review.create(body: "Worth the wait!--Darkelfone", gamer: "Dark", game_id: 1)
