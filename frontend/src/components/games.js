@@ -7,21 +7,21 @@ class Games {
     }
     initBindingsAndEventListeners() {
         this.newGameForm = document.getElementById('new-game-form')
-        this.newGameTitle = document.getElementById('new-book-title')
+        this.newGameTitle = document.getElementById('new-game-title')
         this.newGameDeveloper = document.getElementById('new-game-developer')
         this.newGameCover = document.getElementById('new-game-cover')
         this.newGameForm.addEventListener('submit', this.createGame.bind(this))
     }
 
     createGame(g) {
-        g.preventDegault();
+        g.preventDefault();
         const titleValue = this.newGameTitle.value;
         const developerValue = this.newGameDeveloper.value;
         const coverValue = this.newGameCover.value;
 
         this.adapter.createGame(titleValue, developerValue, coverValue)
             .then(game => {
-            const newGame = new Games(game)
+            const newGame = new Game(game)
             this.games.push(newGame)
             this.newGameTitle.value = ' '
             this.newGameDeveloper.value = ' '
@@ -29,8 +29,18 @@ class Games {
             newGame.renderGameBlock()
         })
     }
+    fetchAndLoadGames() {
+        this.adapter
+        .getGames()
+        .then(games => {
+        games.forEach(game => this.games.push(new Game(game)))
+        })
+        .then(() => {
+        this.renderGames()
+        })
+    }
 
-    renderGameBlock() {
+    renderGames() {
         this.games.map(game => game.renderGameBlock())
     }
 }
