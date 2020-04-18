@@ -9,21 +9,21 @@ class Game {
     }
 
     renderGameBlock() {
-        const gameContainer = document.getElementById('games-content')
+        const gamesContainer = document.getElementById('games-content')
 
             const gameBlock = document.createElement('div')
-            gameBlock.className = "games-container"
+            gameBlock.className = "game-container"
             gamesContainer.appendChild(gameBlock)
 
 
                 const deleteButton = document.createElement("BUTTON")
                 deleteButton.setAttribute("id", 'delete-button-${this.id}')
-                deleteButton.innerHTML = " Delete Block"
+                deleteButton.innerHTML = " Delete Game"
                 gameBlock.appendChild(deleteButton)
 
                     deleteButton.addEventListener('click', () => {
                         gameBlock.remove()
-                        this.deleteGame('${this.id}')
+                        this.deleteGame(this.id)
                     })
             
             const reviewButton = document.createElement("BUTTON")
@@ -34,7 +34,7 @@ class Game {
                     
                     reviewButton.addEventListener('click', this.getAndFormatNewReviewForm.bind(this))
 
-            const cover = document.createAttribute('cvr')
+            const cover = document.createElement('img')
             cover.setAttribute("class", "cover")
             cover.src = this.cover
             gameBlock.appendChild(cover)
@@ -44,12 +44,12 @@ class Game {
             gameBlock.appendChild(gameInfo)
                     
                 const title = document.createElement('h3')
-                title.setAttribute("class", 'book-title')
+                title.setAttribute("class", 'game-title')
                 title.innerHTML = this.title
                 gameInfo.appendChild(title)
 
                 const developer = document.createElement('h3')
-                developer.setAttribute("class", 'book-developer')
+                developer.setAttribute("class", '-developer')
                 developer.innerHTML = this.developer
                 gameInfo.appendChild(developer)
 
@@ -59,11 +59,11 @@ class Game {
 
                 const reviewHeader = document.createElement('h4')
                 reviewHeader.setAttribute("class", 'review-header')
-                reviewHeader.innerHTML = 'Posse Comments:'
+                reviewHeader.innerHTML = 'Player Comments:'
                 reviewInfo.append(reviewHeader)
                 
                 const reviews = document.createElement('div')
-                reviews.setAttribute("id", 'review-${this.id}')
+                reviews.setAttribute("id", `review-${this.id}`)
                 reviewInfo.appendChild(reviews)
                 reviews.innerHTML = this.reviews.map(review => this.reviewBody(review)).join('')
 
@@ -75,26 +75,26 @@ class Game {
 
 
     deleteGame(id){
-        return fetch('https://localhost:3000/games' + '/' + id, {
-            method: 'DELETE',
+        return fetch('http://localhost:3000/games' + '/' + id, {
+        method: 'DELETE',
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-            }       
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+          }
         })
-    }
+      }
 
     getAndFormatNewReviewForm(event) {
         event.preventDefault();
-        const newReviewForm = document.getElementById('new-review-form')
-        const submitButton = document.getElementById("button")
+        const newReviewForm = document.getElementById('new-review-form')   
+        const submitButton = document.createElement("button") 
         submitButton.innerHTML = "Add"
         submitButton.id = "review-submit"
         submitButton.type = "submit"
         const buttonDiv = document.getElementById("buttons")
         buttonDiv.appendChild(submitButton)
-        submitButton.addEventListener('click', this.sumitReviewInputs.bind(this))
-    }
+        submitButton.addEventListener('click', this.submitReviewInputs.bind(this))
+      }
 
     submitReviewInputs(event) {
         event.preventDefault();
@@ -102,7 +102,7 @@ class Game {
         const submitButton = document.getElementById("review-submit")
         const form = document.getElementById('new-review-form')
         const newReviewBody = document.getElementById('new-review-body')
-        const reviewBox = document.getElementById('review-${this.id}')
+        const reviewBox = document.getElementById(`review-${this.id}`)
         const pDiv= document.createElement('p')
         reviewBox.appendChild(pDiv)
 
@@ -110,24 +110,24 @@ class Game {
             game_id: this.id ,
             body: newReviewBody.value,
         };
-        fetch('http://locahost:3000/reviews', {
-            method: 'POST',
+        fetch('http://localhost:3000/reviews', {
+            method:'POST',
             headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
+              "Content-Type": "application/json",
+              "Accept": "application/json"
             },
             body:JSON.stringify(reviewAddition)
-        })
-        .then(res => res.json())
+          })
+          .then(res => res.json())
             .then(review => {
-                pDiv.innerHTML = review.body
-                newReviewBody.value = ''
-                buttonDiv.removeChild(submitButton)
-                closeForm()
-            })
+            // console.log(review)
+            // console.log(review.body)
+      
+            pDiv.innerHTML = review.body
+            newReviewBody.value = ' '
+            buttonDiv.removeChild(submitButton)
+            closeForm()
+          })
         }
-        
-}
-
-
-    
+      
+      }
