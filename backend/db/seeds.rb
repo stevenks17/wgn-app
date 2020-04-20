@@ -20,6 +20,8 @@ g7 = Game.create(title: "God Of War", developer: "Santa Monica Studio", cover: "
 g8 = Game.create(title: "Resident Evil 2", developer: "Capcom", cover: "https://upload.wikimedia.org/wikipedia/en/f/fd/Resident_Evil_2_Remake.jpg")
 g9 = Game.create(title: "Star Wars: Jedi Fallen Order", developer: "EA Games", cover: "https://upload.wikimedia.org/wikipedia/en/1/13/Cover_art_of_Star_Wars_Jedi_Fallen_Order.jpg")
 g10 = Game.create(title: "Monster Hunter: World", developer: "Capcom", cover: "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg")
+g11 = Game.create(title: "Doom Eternal", developer: "iD Software", cover: "https://images-na.ssl-images-amazon.com/images/I/91dj5nYfunL.jpg")
+g12 = Game.create(title: "Total War: Warhammer 2", developer: "Creative Assembly", cover: "https://s2.gaming-cdn.com/images/products/2014/orig/total-war-warhammer-ii-cover.jpg")
 
 
 
