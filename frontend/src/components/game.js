@@ -70,7 +70,7 @@ class Game {
     }
 
     reviewBody(review) {
-        return '<p>${review.body}</p>'
+        return `<p>${review.body}</p>`
     }
 
 
