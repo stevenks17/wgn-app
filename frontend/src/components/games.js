@@ -11,6 +11,8 @@ class Games {
         this.newGameDeveloper = document.getElementById('new-game-developer')
         this.newGameCover = document.getElementById('new-game-cover')
         this.newGameForm.addEventListener('submit', this.createGame.bind(this))
+        document.getElementById("sort").addEventListener ("click", this.sortAlpha.bind(this));
+
     }
 
     createGame(g) {
@@ -43,4 +45,32 @@ class Games {
     renderGames() {
         this.games.map(game => game.renderGameBlock())
     }
+
+    sortAlpha() {
+        console.log('test')
+        
+        this.games.sort(function(gameA, gameB){
+        if (gameA.title < gameB.title) {
+            return -1;
+   
+        }
+        if (gameA.title > gameB.title){
+            return 1;
+        }
+   
+        return 0;
+       });
+       console.log(this.games)
+       const gamesContainer = document.getElementById('games-content')
+       gamesContainer.innerHTML = ""
+       this.renderGames()
+       
+
+    }
+
+
 }
+
+
+
+
