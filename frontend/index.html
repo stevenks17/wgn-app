@@ -13,7 +13,7 @@
 <!----Top Header--------------------->
     <div id="top-header"
     <h1>Which Game Next? </h1> 
-    <h2 id ="txt-inside-img"> games reviewed by gamers </h2>
+    <h2 id ="txt-inside-img"> </h2>
         <div>
             <img id='header-image' src="/Users/stevenkumarsingh/Development/projects/wgn-app/games.jpg" alt="games">
         </div>
@@ -22,6 +22,14 @@
 
 
 <!----Game Grid------------------------>
+<div id="filter">
+    <div id="buttons">
+        <button id="sort">Sort Games Alphabetically</button>
+    </div>
+
+
+</div>
+
 <div class="container">
     <section id="games-content"></section>
 </div>
@@ -34,9 +42,9 @@
         <label for="new-game-title">Game Title:</label>
         <input type="text" id="new-game-title" placeholder="Enter a game title">
         <label for="new-game-developer">Game Developer:</label>
-        <input type="text" id="new-game-developer" placeholder="Enter the Game Developer">
+        <input type="text" id="new-game-developer" placeholder="Enter Developer name">
         <label for="new-game-cover">Game Cover URL:</label>
-        <input type="text" id="new-game-cover" placeholder="Enter Game Cover URL">
+        <input type="text" id="new-game-cover" placeholder="Add Game Cover URL">
         <button type="submit">Add Game</button>
     </form>
 </div>
@@ -47,7 +55,7 @@
     <form id="new-review-form">
         <div class="body-input">
             <label for="new-review-body">Add a comment:</label>
-            <input type="text" id="new-review-body" placeholder="Add a comment about this game --your name">
+            <input type="text" id="new-review-body" placeholder="Add your playtime and a comment here  --your name">
         </div>
 
         <div id="buttons">
@@ -55,6 +63,8 @@
         </div>
     </form>
 </div>
+
+
 
 
 <!-----Scripts----->
